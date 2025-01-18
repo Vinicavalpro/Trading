@@ -103,8 +103,11 @@
                 setTimeout(function() {
                     window.location.href = "https://tradeboosting.org/app/login.php"; 
                 }, 2000);
-            }).
-        </script>
+            }).catch(error => {
+                console.error('Erro ao enviar o formulário:', error);
+            });
+        });
+    </script>
 
 </body>
 </html>
