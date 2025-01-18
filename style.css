@@ -26,22 +26,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 300px;
-    position: relative; /* Necessário para posicionar a imagem */
-}
-
-/* Adicionando a imagem de fundo */
-.login-box::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('https://media.seudinheiro.com/uploads/2024/10/Pictures-Anna-8-715x402.jpg'); /* Substitua pelo caminho da sua imagem */
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2; /* Ajuste a opacidade conforme necessário */
-    z-index: -1; /* Faz com que a imagem fique atrás do conteúdo da caixa de login */
 }
 
 h1 {
