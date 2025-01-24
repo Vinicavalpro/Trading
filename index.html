@@ -131,6 +131,11 @@
     ?
 </div>
     
+<!-- Botão de ajuda -->
+<div id="helpButton" style="position: fixed; bottom: 20px; right: 20px; background-color: #4CAF50; color: white; border-radius: 50%; padding: 5px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 30px; height: 30px; text-align: center; display: flex; justify-content: center; align-items: center;">
+    ?
+</div>
+    
 <!-- Chat de ajuda -->
 <div id="chatContainer" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
     <h3 style="margin: 0;">Ajuda</h3>
@@ -150,14 +155,22 @@
 <script>
 // Exibe o chat quando o botão de ajuda é clicado
 document.getElementById('helpButton').onclick = function() {
+    resetChat(); // Reseta o chat para o menu principal
     document.getElementById('chatContainer').style.display = 'block';
 };
-
+    
 // Fecha o chat
 function closeChat() {
     document.getElementById('chatContainer').style.display = 'none';
 }
-    
+
+// Reseta o chat para o menu principal
+function resetChat() {
+    document.getElementById('faqList').style.display = 'block'; // Mostra as perguntas novamente
+    document.getElementById('menuPrompt').innerText = "Escolha uma das opções abaixo:"; // Restaura o texto do menu
+    document.getElementById('answer').innerHTML = ''; // Limpa a resposta
+}
+
 // Exibe a resposta de acordo com a pergunta clicada
 function showAnswer(questionNumber, questionText) {
     const answers = {
@@ -175,14 +188,36 @@ function showAnswer(questionNumber, questionText) {
     // Substitui o texto do menu
     document.getElementById('menuPrompt').innerText = questionText;
 
-    // Exibe o efeito de "digitando"
+    // Exibe o efeito de "digitando" com animação
     const answerDiv = document.getElementById('answer');
-    answerDiv.innerHTML = '<div style="font-style: italic; color: gray;">Digitando...</div>';
+    answerDiv.innerHTML = '<div style="font-style: italic; color: gray;">Digitando <span class="dots">...</span></div>';
     
+    // Inicia a animação dos três pontinhos
+    animateDots();
+
     setTimeout(() => {
         answerDiv.innerHTML = `<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin-top: 10px; max-width: 80%; word-wrap: break-word;">${answers[questionNumber]}</div>
         <button onclick="backToMenu()" style="margin-top: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Voltar ao Menu</button>`;
+        stopAnimatingDots(); // Para a animação após a resposta ser exibida
     }, 2000); // Tempo de espera de 2 segundos antes de mostrar a resposta
+}
+
+// Função para animar os três pontinhos
+let dotAnimationInterval;
+function animateDots() {
+    const dots = document.querySelector('.dots');
+    let dotCount = 0;
+    dotAnimationInterval = setInterval(() => {
+        dotCount = (dotCount + 1) % 4; // Ciclo de 0 a 3
+        dots.textContent = '.'.repeat(dotCount); // Atualiza o número de pontos
+    }, 500); // Atualiza a cada 500ms
+}
+
+// Função para parar a animação dos três pontinhos
+function stopAnimatingDots() {
+    clearInterval(dotAnimationInterval); // Para a animação
+    const dots = document.querySelector('.dots');
+    dots.textContent = ''; // Limpa os pontos
 }
 
 // Função para voltar ao menu de opções
@@ -201,6 +236,18 @@ function backToMenu() {
 
 #answer {
     margin-top: 15px;
+}
+
+/* Estilo para os três pontinhos */
+.dots {
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 20% { opacity: 1; }
+    40%, 60% { opacity: 0; }
+    80%, 100% { opacity: 1; }
 }
 </style>
     
