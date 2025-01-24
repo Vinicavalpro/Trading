@@ -179,7 +179,7 @@ function showAnswer(questionNumber) {
     setTimeout(() => {
         answerDiv.innerHTML = `<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin-top: 10px; max-width: 80%; word-wrap: break-word;">${answers[questionNumber]}</div>
         <button onclick="backToMenu()" style="margin-top: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Voltar ao Menu</button>`;
-    }, 2000); // Tempo de espera de 2 segundos antes de mostrar a resposta
+    }, 5000); // Tempo de espera de 2 segundos antes de mostrar a resposta
 }
 
 // Função para voltar ao menu de opções
