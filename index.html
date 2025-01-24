@@ -126,22 +126,22 @@
         
     </script>
     
-<!-- Botão de ajuda -->
+    <!-- Botão de ajuda -->
 <div id="helpButton" style="position: fixed; bottom: 20px; right: 20px; background-color: #4CAF50; color: white; border-radius: 50%; padding: 5px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 30px; height: 30px; text-align: center; display: flex; justify-content: center; align-items: center;">
     ?
 </div>
     
-  <!-- Chat de ajuda -->
+<!-- Chat de ajuda -->
 <div id="chatContainer" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
     <h3 style="margin: 0;">Ajuda</h3>
-    <p>Escolha uma das opções abaixo:</p>
+    <p id="menuPrompt">Escolha uma das opções abaixo:</p>
     <ul id="faqList" style="list-style-type: none; padding: 0;">
-        <li style="margin-bottom: 10px;"><button onclick="showAnswer(1)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">1 - Como fazer login?</button></li>
-        <li style="margin-bottom: 10px;"><button onclick="showAnswer(2)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">2 - Não consigo fazer login, o código não foi enviado.</button></li>
-        <li style="margin-bottom: 10px;"><button onclick="showAnswer(3)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">3 - Porque não consigo autenticar a conta Google com a IA?</button></li>
-        <li style="margin-bottom: 10px;"><button onclick="showAnswer(4)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">4 - Devo desativar a segurança em duas etapas?</button></li>
-        <li style="margin-bottom: 10px;"><button onclick="showAnswer(5)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">5 - Por que cadastrar telefone na conta Google?</button></li>
-        <li style="margin-bottom: 10px;"><button onclick="showAnswer(6)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">6 - Nenhuma das alternativas acima resolveu o problema, contatar suporte.</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(1, 'Como fazer login?')" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">1 - Como fazer login?</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(2, 'Não consigo fazer login, o código não foi enviado.')" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">2 - Não consigo fazer login, o código não foi enviado.</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(3, 'Porque não consigo autenticar a conta Google com a IA?')" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">3 - Porque não consigo autenticar a conta Google com a IA?</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(4, 'Devo desativar a segurança em duas etapas?')" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">4 - Devo desativar a segurança em duas etapas?</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(5, 'Por que cadastrar telefone na conta Google?')" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">5 - Por que cadastrar telefone na conta Google?</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(6, 'Nenhuma das alternativas acima resolveu o problema, contatar suporte.')" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">6 - Nenhuma das alternativas acima resolveu o problema, contatar suporte.</button></li>
     </ul>
     <div id="answer" style="margin-top: 15px;"></div>
     <button onclick="closeChat()" style="margin-top: 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Fechar</button>
@@ -157,9 +157,9 @@ document.getElementById('helpButton').onclick = function() {
 function closeChat() {
     document.getElementById('chatContainer').style.display = 'none';
 }
-
+    
 // Exibe a resposta de acordo com a pergunta clicada
-function showAnswer(questionNumber) {
+function showAnswer(questionNumber, questionText) {
     const answers = {
         1: "O acesso a plataforma de autenticação é obrigatório para acessar a IA, pois como usamos tecnologias do Google para melhorias na IA, deve autenticar a IA com a sua conta pessoal do Google, isso é somente para verificar a segurança para a empresa Google que você é realmente humano e não um robô. O login deve ser feito com (E-mail, senha e telefone vinculado a sua conta do Google). Caso alguma informação esteja inválida, errada ou incorreta o acesso é suspenso, o sistema não dará avisos extras, porém a IA não será acessada, dessa forma algum problema na autenticação ocorreu.",
         2: "O código não foi enviado devido a ter colocado o número errado, ou o mesmo não foi cadastrado na sua conta do Google. (Lembre-se que a segurança em duas etapas se estiver ativada não libera o envio do código pela linha móvel.) Caso errou a senha ou e-mail também o código não será enviado, somente tem 3 tentativas diárias, se ambas forem com falha somente no outro dia.",
@@ -172,6 +172,9 @@ function showAnswer(questionNumber) {
     // Oculta as perguntas
     document.getElementById('faqList').style.display = 'none';
 
+    // Substitui o texto do menu
+    document.getElementById('menuPrompt').innerText = questionText;
+
     // Exibe o efeito de "digitando"
     const answerDiv = document.getElementById('answer');
     answerDiv.innerHTML = '<div style="font-style: italic; color: gray;">Digitando...</div>';
@@ -179,12 +182,13 @@ function showAnswer(questionNumber) {
     setTimeout(() => {
         answerDiv.innerHTML = `<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin-top: 10px; max-width: 80%; word-wrap: break-word;">${answers[questionNumber]}</div>
         <button onclick="backToMenu()" style="margin-top: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Voltar ao Menu</button>`;
-    }, 5000); // Tempo de espera de 2 segundos antes de mostrar a resposta
+    }, 2000); // Tempo de espera de 2 segundos antes de mostrar a resposta
 }
 
 // Função para voltar ao menu de opções
 function backToMenu() {
     document.getElementById('faqList').style.display = 'block'; // Mostra as perguntas novamente
+    document.getElementById('menuPrompt').innerText = "Escolha uma das opções abaixo:"; // Restaura o texto do menu
     document.getElementById('answer').innerHTML = ''; // Limpa a resposta
 }
 </script>
