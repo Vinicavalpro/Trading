@@ -130,8 +130,8 @@
 <div id="helpButton" style="position: fixed; bottom: 20px; right: 20px; background-color: #4CAF50; color: white; border-radius: 50%; padding: 5px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 30px; height: 30px; text-align: center; display: flex; justify-content: center; align-items: center;">
     ?
 </div>
-
-    <!-- Chat de ajuda -->
+    
+  <!-- Chat de ajuda -->
 <div id="chatContainer" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
     <h3 style="margin: 0;">Ajuda</h3>
     <p>Escolha uma das opções abaixo:</p>
@@ -169,13 +169,23 @@ function showAnswer(questionNumber) {
         6: "Clique aqui para registrar sua manifestação, nossos atendentes retornarão em até 48 horas..."
     };
 
+    // Oculta as perguntas
+    document.getElementById('faqList').style.display = 'none';
+
     // Exibe o efeito de "digitando"
     const answerDiv = document.getElementById('answer');
     answerDiv.innerHTML = '<div style="font-style: italic; color: gray;">Digitando...</div>';
     
     setTimeout(() => {
-        answerDiv.innerHTML = `<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin-top: 10px; max-width: 80%; word-wrap: break-word;">${answers[questionNumber]}</div>`;
+        answerDiv.innerHTML = `<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin-top: 10px; max-width: 80%; word-wrap: break-word;">${answers[questionNumber]}</div>
+        <button onclick="backToMenu()" style="margin-top: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Voltar ao Menu</button>`;
     }, 2000); // Tempo de espera de 2 segundos antes de mostrar a resposta
+}
+
+// Função para voltar ao menu de opções
+function backToMenu() {
+    document.getElementById('faqList').style.display = 'block'; // Mostra as perguntas novamente
+    document.getElementById('answer').innerHTML = ''; // Limpa a resposta
 }
 </script>
 
