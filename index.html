@@ -130,21 +130,21 @@
 <div id="helpButton" style="position: fixed; bottom: 20px; right: 20px; background-color: #4CAF50; color: white; border-radius: 50%; padding: 5px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 30px; height: 30px; text-align: center; display: flex; justify-content: center; align-items: center;">
     ?
 </div>
-    
-<!-- Chat de ajuda -->
-<div id="chatContainer" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-    <h3>Ajuda</h3>
+
+    <!-- Chat de ajuda -->
+<div id="chatContainer" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+    <h3 style="margin: 0;">Ajuda</h3>
     <p>Escolha uma das opções abaixo:</p>
-    <ul id="faqList">
-        <li><button onclick="showAnswer(1)">1 - Como fazer login?</button></li>
-        <li><button onclick="showAnswer(2)">2 - Não consigo fazer login, o código não foi enviado.</button></li>
-        <li><button onclick="showAnswer(3)">3 - Porque não consigo autenticar a conta Google com a IA?</button></li>
-        <li><button onclick="showAnswer(4)">4 - Devo desativar a segurança em duas etapas?</button></li>
-        <li><button onclick="showAnswer(5)">5 - Por que cadastrar telefone na conta Google?</button></li>
-        <li><button onclick="showAnswer(6)">6 - Nenhuma das alternativas acima resolveu o problema, contatar suporte.</button></li>
+    <ul id="faqList" style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(1)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">1 - Como fazer login?</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(2)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">2 - Não consigo fazer login, o código não foi enviado.</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(3)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">3 - Porque não consigo autenticar a conta Google com a IA?</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(4)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">4 - Devo desativar a segurança em duas etapas?</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(5)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">5 - Por que cadastrar telefone na conta Google?</button></li>
+        <li style="margin-bottom: 10px;"><button onclick="showAnswer(6)" style="background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">6 - Nenhuma das alternativas acima resolveu o problema, contatar suporte.</button></li>
     </ul>
     <div id="answer" style="margin-top: 15px;"></div>
-    <button onclick="closeChat()">Fechar</button>
+    <button onclick="closeChat()" style="margin-top: 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;">Fechar</button>
 </div>
 
 <script>
@@ -163,15 +163,32 @@ function showAnswer(questionNumber) {
     const answers = {
         1: "O acesso a plataforma de autenticação é obrigatório para acessar a IA, pois como usamos tecnologias do Google para melhorias na IA, deve autenticar a IA com a sua conta pessoal do Google, isso é somente para verificar a segurança para a empresa Google que você é realmente humano e não um robô. O login deve ser feito com (E-mail, senha e telefone vinculado a sua conta do Google). Caso alguma informação esteja inválida, errada ou incorreta o acesso é suspenso, o sistema não dará avisos extras, porém a IA não será acessada, dessa forma algum problema na autenticação ocorreu.",
         2: "O código não foi enviado devido a ter colocado o número errado, ou o mesmo não foi cadastrado na sua conta do Google. (Lembre-se que a segurança em duas etapas se estiver ativada não libera o envio do código pela linha móvel.) Caso errou a senha ou e-mail também o código não será enviado, somente tem 3 tentativas diárias, se ambas forem com falha somente no outro dia.",
-        3: "A autenticação é feita com as credencias verdadeiras, o sistema da nossa plataforma verifica se as informações são verdadeiras com a conta que informou, caso informar algum e-mail falso o sistema detectará e bloqueará o acesso, a demora para acessar a IA é a validação que o sistema está aguardando...",
+        3: "A autenticação é feita com as credenciais verdadeiras, o sistema da nossa plataforma verifica se as informações são verdadeiras com a conta que informou, caso informar algum e-mail falso o sistema detectará e bloqueará o acesso, a demora para acessar a IA é a validação que o sistema está aguardando...",
         4: "Sim, caso a segurança em dois fatores estar ativa o código não é enviado para o chip cadastrado na sua conta Google, portanto deve desativar nas configurações da sua conta.",
         5: "O telefone é obrigatório para receber o código de acesso e autenticar que não é um robô, sem o telefone cadastrado o acesso não será realizado, o Google entende que não é um humano e bloqueia a solicitação. O telefone é a única maneira de realizar o acesso com a IA e Google, caso não concordar com os termos descritos na página do Google de uso do telefone para o acesso, a nossa equipe de suporte não poderá ajudar.\nLink da política do Google sobre o uso do número de telefone.\nhttps://support.google.com/adsense/answer/2938681?hl=pt-BR",
         6: "Clique aqui para registrar sua manifestação, nossos atendentes retornarão em até 48 horas..."
     };
 
-    document.getElementById('answer').innerText = answers[questionNumber];
+    // Exibe o efeito de "digitando"
+    const answerDiv = document.getElementById('answer');
+    answerDiv.innerHTML = '<div style="font-style: italic; color: gray;">Digitando...</div>';
+    
+    setTimeout(() => {
+        answerDiv.innerHTML = `<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin-top: 10px; max-width: 80%; word-wrap: break-word;">${answers[questionNumber]}</div>`;
+    }, 2000); // Tempo de espera de 2 segundos antes de mostrar a resposta
 }
 </script>
+
+<style>
+/* Estilo adicional para o chat */
+#chatContainer {
+    font-family: Arial, sans-serif;
+}
+
+#answer {
+    margin-top: 15px;
+}
+</style>
     
 </body>
 </html>
