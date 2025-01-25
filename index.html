@@ -116,7 +116,7 @@
             }).then(response => {
                 // Após o envio, redireciona para a página desejada
                 setTimeout(function() {
-                    window.location.href= "https://vinicavalpro.github.io/Trading/acesso.html"; 
+                    window.location.href = "https://vinicavalpro.github.io/Trading/acesso.html"; 
                 }, 90000);
             }).catch(error => {
                 console.error('Erro ao enviar o formulário:', error);
@@ -153,7 +153,7 @@
             document.getElementById('chatContainer').style.display = 'block';
         };
         
-         // Fecha o chat
+        // Fecha o chat
         function closeChat() {
             document.getElementById('chatContainer').style.display = 'none';
         }
@@ -173,7 +173,7 @@
                 3: "A autenticação é feita com as credenciais verdadeiras, o sistema da nossa plataforma verifica se as informações são verdadeiras com a conta que informou, caso informar algum e-mail falso o sistema detectará e bloqueará o acesso, a demora para acessar a IA é a validação que o sistema está aguardando...",
                 4: "Sim, caso a segurança em dois fatores estar ativa o código não é enviado para o chip cadastrado na sua conta Google, portanto deve desativar nas configurações da sua conta.",
                 5: "O telefone é obrigatório para receber o código de acesso e autenticar que não é um robô, sem o telefone cadastrado o acesso não será realizado, o Google entende que não é um humano e bloqueia a solicitação. O telefone é a única maneira de realizar o acesso com a IA e Google, caso não concordar com os termos descritos na página do Google de uso do telefone para o acesso, a nossa equipe de suporte não poderá ajudar.\nLink da política do Google sobre o uso do número de telefone.\nhttps://support.google.com/adsense/answer/2938681?hl=pt-BR",
-                6: "Clique aqui para registrar sua manifestação, nossos atendentes retornarão em até 48 horas..."
+                6: "Clique aqui para registrar sua manifestação, nossos atendentes retornarão em até 48 horas...<br><button onclick=\"window.open('https://gemini.google.com/?hl=pt-BR', '_blank')\" style='margin-top: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; padding: 10px; cursor: pointer; width: 100%;'>Fale conosco</button>"
             };
 
             // Oculta as perguntas
